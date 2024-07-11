@@ -1,5 +1,8 @@
 let mode = "development"
+const path = require("path")
 const minCssExtractPlugin = require("mini-css-extract-plugin")
+const htmlWebpackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 let target = "web"
 
@@ -10,7 +13,13 @@ if (process.env.NODE_ENV === "production") {
 module.exports = {
   mode: mode,
   target: target,
+  entry: {
+    index: "./src/index.js",
+    // another: "./src/another-module.js",
+  },
   output: {
+    // filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "public"),
     assetModuleFilename: "images/[hash][ext][query]",
   },
   module: {
@@ -42,7 +51,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [new minCssExtractPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new minCssExtractPlugin(),
+    new htmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+  ],
   resolve: {
     extensions: [".js", ".jsx"],
   },
