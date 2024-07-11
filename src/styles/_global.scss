@@ -1,0 +1,7 @@
+@use "variable";
+
+body {
+  margin: 0;
+  background-color: variable.$bg;
+  color: brown;
+}
