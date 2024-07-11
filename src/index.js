@@ -1,14 +1,6 @@
 import "./styles/main.scss"
+import { createRoot } from "react-dom/client"
+import App from "./components/App"
 
-const abc = {
-  a: 1,
-  b: 2,
-  c: 3,
-}
-
-const cde = {
-  ...abc,
-  l: 1,
-}
-
-console.log({ abc, cde })
+const root = createRoot(document.getElementById("root"))
+root.render(<App />)
